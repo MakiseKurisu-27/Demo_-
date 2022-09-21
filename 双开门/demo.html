@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 1366px;
+            height: 600px;
+            margin: 50px auto;
+            background: url('./images/bg.jpg');
+
+            /* 超出父级范围 就 隐藏 【overflow的溢出隐藏】 */
+            overflow: hidden;
+        }
+    
+        /* 左右相同的样式 */
+        /* 伪元素: 行内显示模式 */
+        .box::before,
+        .box::after {
+            float: left;
+            content: '';
+            width: 50%;
+            height: 600px;
+            background-image: url(./images/fm.jpg);
+
+            /* 过渡: hover 效果渐变触发 */
+            transition: all .7s;
+        }
+
+        /* 单独控制after 的背景图位置 */
+        .box::after {
+            /* 只需要图片的右半部分: bgp: right 0; */
+            background-position: right 0;
+        }
+
+        /* 鼠标移入box, before向左移动 100% - */
+        .box:hover::before {
+            transform: translate(-100%);
+        }
+        
+        /* 鼠标移入box, after向右移动 + */
+        .box:hover::after {
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <!-- 手写2个div  /  用css伪元素 before after -->
+    </div>
+</body>
+
+</html>
